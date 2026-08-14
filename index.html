@@ -109,6 +109,117 @@ tbody tr:nth-child(even) td{background:#F7F5EF}
 footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'Helvetica Neue',Helvetica,sans-serif;
   font-size:12px;color:var(--sub);border-top:1px solid var(--line)}
 
+/* ---- Navegação entre modos (Livro / Dados / Ficha) ---- */
+#nav .nav-apps{padding:14px 12px 12px 12px;border-bottom:1px solid #2A2820;margin-bottom:8px}
+#nav a.nav-app{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:6px;
+  text-decoration:none;color:#CFC8B8;font-family:'Helvetica Neue',Helvetica,sans-serif;
+  font-size:13.5px;transition:background .15s,color .15s}
+#nav a.nav-app:hover{background:#221F19;color:#EDE8DC}
+#nav a.nav-app.active{background:#2B2410;color:var(--amber)}
+#nav a.nav-app .ic{font-size:15px}
+
+/* ---- Layout comum das telas de app (Dados / Ficha) ---- */
+.app-view{max-width:900px;margin:0 auto;padding:64px 40px 90px 40px}
+.app-head{margin-bottom:30px}
+.app-head .kicker2{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:12px;
+  letter-spacing:.28em;color:var(--amber2);margin-bottom:8px}
+.app-head h1{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:34px;font-weight:600;margin:0 0 10px 0}
+.app-head p{color:var(--sub);max-width:68ch;margin:0}
+.card{background:#F8F6EF;border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin-bottom:22px}
+.card h2{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:15px;text-transform:uppercase;
+  letter-spacing:.06em;margin:0 0 16px 0;color:#141310}
+
+/* ---- Rolador de dados ---- */
+.roll-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;align-items:end}
+.roll-form label{display:block;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--sub);margin-bottom:6px}
+.roll-form input[type=number],.roll-form select{width:100%;padding:9px 10px;border:1px solid #C9C3B4;
+  border-radius:6px;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:14px;background:#fff;color:var(--ink)}
+.pool-preview{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:12px;color:var(--sub);margin-top:6px}
+.btn{background:var(--amber);color:#1B1A17;border:none;border-radius:6px;padding:11px 22px;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:14px;font-weight:700;cursor:pointer;
+  letter-spacing:.02em}
+.btn:hover{background:var(--amber2)}
+.btn.secondary{background:none;border:1px solid #C9C3B4;color:var(--ink);font-weight:400}
+.btn.secondary:hover{border-color:var(--amber2);color:var(--amber2)}
+.btn.danger{background:none;border:1px solid #B4544A;color:#B4544A;font-weight:400}
+.btn.danger:hover{background:#B4544A;color:#fff}
+.dice-tray{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.die{width:48px;height:48px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;font-weight:700;font-size:18px;
+  background:#fff;border:2px solid #C9C3B4;color:var(--ink);position:relative;
+  box-shadow:0 2px 0 #C9C3B4}
+.die.exito{background:#EAF3E6;border-color:#6B9A5A;color:#3A6B2C}
+.die.sombra{background:#F5E3E1;border-color:#B4544A;color:#8A3229}
+.die.ruido{background:#241B1B;border-color:#7A2E24;color:#E8C9A8;box-shadow:0 2px 0 #4A1F19}
+.die.ruido.exito{background:#3A1616;border-color:#C8523F;color:#F3B98F}
+.die.ruido.artefato{background:#5B1414;border-color:#E86A3F;color:#FFD9B0;box-shadow:0 0 0 3px #E86A3F55}
+.die .tag{position:absolute;bottom:-16px;left:0;right:0;text-align:center;font-size:9px;
+  letter-spacing:.05em;color:var(--sub);text-transform:uppercase}
+.die.rolling{animation:diespin .5s ease-out}
+@keyframes diespin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.roll-summary{display:flex;flex-wrap:wrap;gap:22px;margin:26px 0 6px 0}
+.stat{font-family:'Helvetica Neue',Helvetica,sans-serif}
+.stat .num{font-size:28px;font-weight:700;color:#141310;line-height:1}
+.stat .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--sub)}
+.result-banner{margin:20px 0;padding:16px 20px;border-radius:8px;font-family:'Helvetica Neue',Helvetica,sans-serif}
+.result-banner .rname{font-size:19px;font-weight:700;margin-bottom:4px}
+.result-banner .rdesc{font-size:13.5px;opacity:.85}
+.result-banner.ok{background:#EAF3E6;color:#2E5223}
+.result-banner.dirty{background:#FBF0D9;color:#7A5511}
+.result-banner.fail{background:#F5E3E1;color:#7A2E22}
+.result-banner.collapse{background:#3A1616;color:#FFD9B0}
+.mini-roll{margin-top:14px;padding:14px 16px;border-radius:6px;background:#F1EEE6;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:13.5px}
+.mini-roll b{color:var(--amber2)}
+.artefato-card{margin-top:14px;padding:16px 18px;border-radius:6px;background:#241614;color:#F3D9C4;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;border-left:4px solid #E86A3F}
+.artefato-card .a-class{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#E8A87A;margin-bottom:4px}
+.artefato-card .a-text{font-size:15px;margin-bottom:4px}
+.artefato-card .a-dur{font-size:11.5px;color:#C9A98C}
+.roll-log{max-height:340px;overflow-y:auto}
+.roll-log-item{padding:10px 0;border-bottom:1px solid var(--line);font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:12.5px;color:var(--sub);display:flex;justify-content:space-between;gap:10px}
+.roll-log-item b{color:var(--ink)}
+.roll-log-item:last-child{border-bottom:none}
+
+/* ---- Ficha de personagem ---- */
+.sheet-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:14px}
+.field-row label{display:block;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--sub);margin-bottom:5px}
+.field-row input[type=text]{width:100%;padding:9px 10px;border:1px solid #C9C3B4;border-radius:6px;
+  font-family:Georgia,serif;font-size:14px;background:#fff;color:var(--ink)}
+.attr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.attr-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;text-align:center}
+.attr-box .a-name{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:12px;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--sub)}
+.attr-box input{width:56px;text-align:center;font-size:24px;font-weight:700;border:none;
+  background:none;color:var(--ink);font-family:'Helvetica Neue',Helvetica,sans-serif;margin-top:4px}
+.skill-group{margin-bottom:18px}
+.skill-group h3{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:13px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--amber2);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px}
+.skill-row{display:flex;align-items:center;gap:10px;padding:6px 0}
+.skill-row .s-name{flex:1;font-size:14px}
+.skill-row input{width:44px;text-align:center;padding:5px;border:1px solid #C9C3B4;border-radius:5px;font-size:14px}
+.skill-row .roll-btn{background:none;border:1px solid #C9C3B4;border-radius:5px;padding:5px 10px;
+  cursor:pointer;font-size:13px}
+.skill-row .roll-btn:hover{border-color:var(--amber2);background:#F1EEE6}
+.track-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.track-row .t-name{width:120px;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:13px}
+.track-dots{display:flex;gap:6px}
+.track-dot{width:22px;height:22px;border-radius:50%;border:2px solid #C9C3B4;cursor:pointer;background:#fff}
+.track-dot.filled{background:var(--amber2);border-color:var(--amber2)}
+.anchor-row,.protocol-row{margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.anchor-row input[type=text],.protocol-row input[type=text]{flex:1;min-width:200px;padding:8px 10px;
+  border:1px solid #C9C3B4;border-radius:6px;font-family:Georgia,serif;font-size:13.5px}
+.anchor-row .a-type{width:80px;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:11.5px;
+  text-transform:uppercase;color:var(--sub)}
+.checkbox-lbl{display:flex;align-items:center;gap:6px;font-family:'Helvetica Neue',Helvetica,sans-serif;
+  font-size:11.5px;color:var(--sub);white-space:nowrap}
+.save-note{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:11.5px;color:var(--sub);
+  display:flex;align-items:center;gap:6px}
+.save-note .dot{width:7px;height:7px;border-radius:50%;background:#6B9A5A}
+
 @media (max-width:900px){
   #nav{transform:translateX(-100%);transition:transform .2s;width:82vw}
   #nav.open{transform:translateX(0)}
@@ -119,6 +230,7 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
   .cover h1{font-size:52px}
   .cover{padding:0 28px}
   .part{padding:60px 22px 20px 22px}
+  .app-view{padding:60px 22px 60px 22px}
 }
 </style></head><body>
 
@@ -126,6 +238,11 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
 <nav id="nav">
   <div class="brand"><h2>LIMIAR</h2>
     <p>Sistema ARTEFATO · Volumes 1 e 2<br>Documento de desenvolvimento consolidado</p>
+  </div>
+  <div class="nav-apps">
+    <a href="#" id="nav-book" class="nav-app active"><span class="ic">📖</span>O Livro</a>
+    <a href="#" id="nav-dice" class="nav-app"><span class="ic">🎲</span>Rolar Dados</a>
+    <a href="#" id="nav-sheet" class="nav-app"><span class="ic">📋</span>Ficha de Personagem</a>
   </div>
   <div class="search">
     <input type="text" id="site-search" placeholder="Buscar no livro…" autocomplete="off">
@@ -159,6 +276,7 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
 </nav>
 
 <main id="main">
+<div id="view-livro">
 <section class="cover">
   <div class="kicker">H O R R O R &nbsp; D E &nbsp; E S T R A N H A M E N T O</div>
   <h1>LIMIAR</h1>
@@ -17023,6 +17141,135 @@ the room's true size unreadable.
 <p><em>LIMIAR — Prompts de imagem dos Domínios · v1.0 · 30 prompts para 24 domínios</em></p></div></section>
 
 <footer>LIMIAR — Site Completo · gerado a partir dos documentos de desenvolvimento · v1.0</footer>
+</div><!-- /view-livro -->
+
+<div id="view-dados" class="app-view" style="display:none">
+  <div class="app-head">
+    <div class="kicker2">SISTEMA ARTEFATO</div>
+    <h1>Rolar Dados</h1>
+    <p>Pool de d10. Monte a rolagem com Atributo + Perícia, aplique modificadores e o Grau de Assimilação — o rolador troca os dados certos por Dados de Ruído sozinho e resolve Artefatos e Custos automaticamente, seguindo a Parte III do livro.</p>
+  </div>
+
+  <div class="card">
+    <h2>Montar rolagem</h2>
+    <div class="roll-form">
+      <div>
+        <label for="in-atributo">Atributo</label>
+        <input type="number" id="in-atributo" min="0" max="5" value="3">
+      </div>
+      <div>
+        <label for="in-pericia">Perícia</label>
+        <input type="number" id="in-pericia" min="0" max="5" value="2">
+      </div>
+      <div>
+        <label for="in-mod">Modificador (−3 a +3)</label>
+        <input type="number" id="in-mod" min="-3" max="3" value="0">
+      </div>
+      <div>
+        <label for="in-assimilacao">Grau de Assimilação</label>
+        <input type="number" id="in-assimilacao" min="0" max="5" value="0">
+      </div>
+      <div>
+        <label for="in-dificuldade">Dificuldade</label>
+        <select id="in-dificuldade">
+          <option value="1">Padrão (1 êxito)</option>
+          <option value="2">Difícil (2 êxitos)</option>
+          <option value="3">Improvável (3 êxitos)</option>
+          <option value="4">Além (4 êxitos)</option>
+          <option value="5">Além + (5 êxitos)</option>
+        </select>
+      </div>
+      <div>
+        <button class="btn" id="btn-roll" type="button">🎲 Rolar</button>
+      </div>
+    </div>
+    <div class="pool-preview" id="pool-preview"></div>
+  </div>
+
+  <div class="card" id="result-card" style="display:none">
+    <h2>Resultado</h2>
+    <div class="dice-tray" id="dice-tray"></div>
+    <div class="roll-summary">
+      <div class="stat"><div class="num" id="sum-exitos">0</div><div class="lbl">Êxitos</div></div>
+      <div class="stat"><div class="num" id="sum-sombras">0</div><div class="lbl">Sombras</div></div>
+      <div class="stat"><div class="num" id="sum-ressonancia">0</div><div class="lbl">Ressonância</div></div>
+      <div class="stat"><div class="num" id="sum-artefatos">0</div><div class="lbl">Artefatos</div></div>
+    </div>
+    <div class="result-banner" id="result-banner">
+      <div class="rname" id="result-name"></div>
+      <div class="rdesc" id="result-desc"></div>
+    </div>
+    <div id="cost-area"></div>
+    <div id="artefato-area"></div>
+    <div id="ressonancia-area"></div>
+  </div>
+
+  <div class="card">
+    <h2>Histórico da sessão</h2>
+    <div class="roll-log" id="roll-log">
+      <div class="roll-log-item" id="roll-log-empty"><span>Nenhuma rolagem ainda.</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="view-ficha" class="app-view" style="display:none">
+  <div class="app-head">
+    <div class="kicker2">SISTEMA ARTEFATO</div>
+    <h1>Ficha de Personagem</h1>
+    <p>Preencha e a ficha salva sozinha neste navegador. Cada Perícia tem um botão de rolar que já manda a rolagem pronta (Atributo + Perícia + Grau de Assimilação atual) para a aba Rolar Dados.</p>
+  </div>
+
+  <div class="sheet-toolbar">
+    <button class="btn secondary" id="btn-export" type="button">⭳ Exportar ficha (.json)</button>
+    <button class="btn secondary" id="btn-import" type="button">⭱ Importar ficha</button>
+    <input type="file" id="file-import" accept="application/json" style="display:none">
+    <button class="btn danger" id="btn-reset" type="button">Limpar ficha</button>
+    <span class="save-note"><span class="dot"></span><span id="save-note-text">salvo neste navegador</span></span>
+  </div>
+
+  <div class="card">
+    <h2>Identidade</h2>
+    <div class="field-row">
+      <div><label>Nome</label><input type="text" id="f-nome" placeholder="Nome do personagem"></div>
+      <div><label>Origem</label><input type="text" id="f-origem" placeholder="Quem você era antes"></div>
+      <div><label>Entrada</label><input type="text" id="f-entrada" placeholder="Como cruzou"></div>
+    </div>
+    <div class="field-row">
+      <div><label>Arquétipo</label><input type="text" id="f-arquetipo" placeholder="Arquétipo"></div>
+      <div><label>Laço</label><input type="text" id="f-laco" placeholder="Frase ligando você a outro personagem"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Atributos <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--sub)">(1–5)</span></h2>
+    <div class="attr-grid">
+      <div class="attr-box"><div class="a-name">Estrutura</div><input type="number" min="1" max="5" id="attr-estrutura" value="2"></div>
+      <div class="attr-box"><div class="a-name">Cadência</div><input type="number" min="1" max="5" id="attr-cadencia" value="2"></div>
+      <div class="attr-box"><div class="a-name">Leitura</div><input type="number" min="1" max="5" id="attr-leitura" value="2"></div>
+      <div class="attr-box"><div class="a-name">Âncora</div><input type="number" min="1" max="5" id="attr-ancora" value="2"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Perícias <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--sub)">(0–5) — clique 🎲 para rolar</span></h2>
+    <div id="skills-container"></div>
+  </div>
+
+  <div class="card">
+    <h2>Trilhas</h2>
+    <div id="tracks-container"></div>
+  </div>
+
+  <div class="card">
+    <h2>Âncoras</h2>
+    <div id="anchors-container"></div>
+  </div>
+
+  <div class="card">
+    <h2>Protocolos <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--sub)">(1 uso cada por sessão)</span></h2>
+    <div id="protocols-container"></div>
+  </div>
+</div>
 </main>
 
 <script>
@@ -17131,6 +17378,447 @@ links.forEach(l => l.addEventListener('click', () => {
   });
   btnNext.addEventListener('click', () => goTo(idx + 1));
   btnPrev.addEventListener('click', () => goTo(idx - 1));
+})();
+
+// ---- Troca de modo: Livro / Rolar Dados / Ficha de Personagem ----
+(function(){
+  const views = { livro: document.getElementById('view-livro'),
+                  dados: document.getElementById('view-dados'),
+                  ficha: document.getElementById('view-ficha') };
+  const navBtns = { livro: document.getElementById('nav-book'),
+                     dados: document.getElementById('nav-dice'),
+                     ficha: document.getElementById('nav-sheet') };
+  function showView(name){
+    Object.keys(views).forEach(k => { views[k].style.display = (k === name) ? '' : 'none'; });
+    Object.keys(navBtns).forEach(k => navBtns[k].classList.toggle('active', k === name));
+    window.scrollTo(0, 0);
+    if (window.innerWidth <= 900) document.getElementById('nav').classList.remove('open');
+  }
+  window.LIMIAR_showView = showView;
+  navBtns.livro.addEventListener('click', e => { e.preventDefault(); showView('livro'); });
+  navBtns.dados.addEventListener('click', e => { e.preventDefault(); showView('dados'); });
+  navBtns.ficha.addEventListener('click', e => { e.preventDefault(); showView('ficha'); });
+  document.querySelectorAll('#nav a.nav-part').forEach(l => {
+    l.addEventListener('click', () => showView('livro'));
+  });
+})();
+
+// ---- Rolador de dados — Sistema ARTEFATO ----
+(function(){
+  const ARTEFATOS = [
+    { classe: 'Visuais', itens: [
+      ['Uma cor específica some do seu campo de visão', 'Permanente'],
+      ['Seu reflexo demora a acompanhar', 'Sessão'],
+      ['Uma parte do seu corpo às vezes não aparece nas fotos', 'Permanente'],
+      ['Um dos aliados aparece duplicado no canto do olho', 'Marcha'],
+      ['Fontes de luz têm sempre uma sombra a mais do que deveriam', 'Permanente'],
+      ['Você vê a poeira parada no ar, sempre, em qualquer lugar', 'Permanente'] ] },
+    { classe: 'Auditivos', itens: [
+      ['Sons de passos chegam meio segundo antes do movimento', 'Cena'],
+      ['Você ouve a própria voz repetir sua última frase, atrasada', 'Cena'],
+      ['Um cômodo específico é sempre silencioso demais para você', 'Permanente'],
+      ['Você escuta o que as pessoas quase disseram e desistiram', 'Sessão'],
+      ['Portas fechando produzem o som errado — sempre o mesmo som errado', 'Permanente'],
+      ['Há uma frequência baixa que só você ouve, e ela some quando você aponta', 'Permanente'] ] },
+    { classe: 'Espaciais', itens: [
+      ['Portas que você fechou aparecem entreabertas', 'Marcha'],
+      ['Seu peso muda de forma perceptível ao atravessar batentes', 'Marcha'],
+      ['O trecho de corredor logo atrás de você não fica igual', 'Marcha'],
+      ['Escadas têm sempre um degrau a mais na subida que na descida', 'Permanente'],
+      ['Você não consegue ficar no centro de uma sala; sempre acaba na parede', 'Permanente'],
+      ['Cantos de 90° parecem levemente agudos para você', 'Permanente'] ] },
+    { classe: 'Mnemônicos', itens: [
+      ['Uma memória de infância ganha um detalhe que não estava lá', 'Permanente'],
+      ['Você não consegue ler seu próprio nome escrito', 'Permanente'],
+      ['Uma pessoa da sua vida anterior deixa de ter rosto na memória', 'Permanente'],
+      ['Você acorda tendo escrito algo que não lembra de escrever', 'Sessão'],
+      ['Você lembra do fim das histórias antes de lembrar do começo', 'Permanente'],
+      ['Uma data importante da sua vida muda de dia, e você aceita', 'Permanente'] ] },
+    { classe: 'Corporais', itens: [
+      ['Você perde a capacidade de sentir a temperatura de superfícies', 'Permanente'],
+      ['Você não projeta mais som ao caminhar em um tipo de piso', 'Permanente'],
+      ['Um cheiro específico acompanha você e ninguém mais sente', 'Permanente'],
+      ['Sua mão não dominante executa o gesto meio segundo depois', 'Sessão'],
+      ['Você para de sentir sede, mas continua precisando de água', 'Permanente'],
+      ['Ferimentos seus cicatrizam no formato de outra coisa', 'Permanente'] ] },
+    { classe: 'Sociais e simbólicos', itens: [
+      ['Texto impresso troca uma palavra por outra, sempre a mesma', 'Permanente'],
+      ['Números lidos por você vêm sempre um a menos', 'Permanente'],
+      ['Alguém do grupo parece ter um nome diferente do que tinha', 'Sessão'],
+      ['Objetos que você guarda mudam de bolso', 'Sessão'],
+      ['Estranhos te chamam por um nome que não é o seu, sempre o mesmo', 'Permanente'],
+      ['Você não consegue mais assinar igual duas vezes', 'Permanente'] ] }
+  ];
+  const CUSTOS = [
+    ['Tempo', 'a Marcha avança sem progresso'],
+    ['Sinal', '+1 na trilha de Sinal do grupo'],
+    ['Recurso', 'role o Dado de Recurso de algo em uso'],
+    ['Posição', 'separação, queda, rota bloqueada, porta que fecha'],
+    ['Informação falsa', 'você acredita ter aprendido algo (bilhete privado)'],
+    ['Desgaste', '1 ponto de Desgaste ou Desalinho, o que couber'] ];
+
+  const d = n => 1 + Math.floor(Math.random() * n);
+
+  function rolarArtefato(){
+    const classe = ARTEFATOS[d(6) - 1];
+    const item = classe.itens[d(6) - 1];
+    return { classe: classe.classe, texto: item[0], duracao: item[1] };
+  }
+  function rolarCusto(){
+    return CUSTOS[d(6) - 1];
+  }
+
+  const inAtributo = document.getElementById('in-atributo');
+  const inPericia = document.getElementById('in-pericia');
+  const inMod = document.getElementById('in-mod');
+  const inAssim = document.getElementById('in-assimilacao');
+  const inDificuldade = document.getElementById('in-dificuldade');
+  const poolPreview = document.getElementById('pool-preview');
+  const resultCard = document.getElementById('result-card');
+  const diceTray = document.getElementById('dice-tray');
+  const rollLog = document.getElementById('roll-log');
+
+  function poolSize(){
+    return (parseInt(inAtributo.value) || 0) + (parseInt(inPericia.value) || 0) + (parseInt(inMod.value) || 0);
+  }
+  function updatePreview(){
+    const p = poolSize();
+    const assim = Math.max(0, parseInt(inAssim.value) || 0);
+    let txt;
+    if (p <= 0) txt = 'Pool cairia a zero → role 2 dados e conte o pior.';
+    else {
+      const ruido = Math.min(assim, p);
+      txt = `Pool de ${p} dado(s)` + (ruido > 0 ? `, sendo ${ruido} Dado(s) de Ruído.` : '.');
+    }
+    poolPreview.textContent = txt;
+  }
+  [inAtributo, inPericia, inMod, inAssim].forEach(el => el.addEventListener('input', updatePreview));
+  updatePreview();
+
+  function classificar(exitos, sombras, exigido){
+    if (exitos === 0 && sombras >= 3) return { key: 'collapse', nome: 'Colapso', desc: 'Custo grave — a mesa escolhe entre dois males.', custo: true, colapso: true };
+    if (exitos >= exigido && sombras < exitos) return { key: 'ok', nome: 'Êxito', desc: 'Funciona como declarado.', custo: false };
+    if (exitos >= exigido && sombras >= exitos) return { key: 'dirty', nome: 'Êxito Sujo', desc: 'Funciona, e o Zelador aplica um Custo.', custo: true };
+    return { key: 'fail', nome: 'Custo', desc: 'Não funciona, e o Zelador aplica um Custo.', custo: true };
+  }
+
+  function renderDie(container, valor, tipo, extraClass){
+    const die = document.createElement('div');
+    die.className = 'die rolling' + (extraClass ? ' ' + extraClass : '');
+    die.textContent = valor;
+    if (tipo) {
+      const tag = document.createElement('div');
+      tag.className = 'tag';
+      tag.textContent = tipo;
+      die.appendChild(tag);
+    }
+    container.appendChild(die);
+  }
+
+  function executarRolagem(){
+    let pool = poolSize();
+    const assim = Math.max(0, parseInt(inAssim.value) || 0);
+    const exigido = parseInt(inDificuldade.value) || 1;
+    let piorDeDois = false;
+
+    let numDados = pool;
+    if (pool <= 0) { numDados = 2; piorDeDois = true; }
+    const numRuido = piorDeDois ? 0 : Math.min(assim, numDados);
+
+    const resultados = [];
+    for (let i = 0; i < numDados; i++) {
+      resultados.push({ valor: d(10), ruido: i < numRuido });
+    }
+
+    let exitos = 0, sombras = 0, ressonancias = 0, artefatosGatilho = 0;
+    diceTray.innerHTML = '';
+
+    if (piorDeDois) {
+      // pool zerado: rola 2 dados comuns e conta apenas o pior
+      const pior = resultados.reduce((a, b) => a.valor <= b.valor ? a : b);
+      resultados.forEach(r => {
+        const usado = (r === pior);
+        let cls = usado ? (r.valor >= 7 ? 'exito' : (r.valor === 1 ? 'sombra' : '')) : '';
+        renderDie(diceTray, r.valor, usado ? 'usado' : 'descartado', cls);
+      });
+      if (pior.valor >= 7) exitos = 1;
+      if (pior.valor === 1) sombras = 1;
+      if (pior.valor === 10) ressonancias = 1;
+    } else {
+      resultados.forEach(r => {
+        if (r.ruido) {
+          let cls = 'ruido', tag = '—';
+          if (r.valor >= 7 && r.valor <= 9) { exitos++; tag = 'Êxito'; cls += ' exito'; }
+          else if (r.valor === 10) { exitos++; artefatosGatilho++; tag = 'Êxito · Artefato'; cls += ' exito artefato'; }
+          else if (r.valor === 1) { sombras++; artefatosGatilho++; tag = 'Sombra · Artefato'; cls += ' artefato'; }
+          renderDie(diceTray, r.valor, tag, cls);
+        } else {
+          let cls = '', tag = '—';
+          if (r.valor >= 7) { exitos++; tag = 'Êxito'; cls = 'exito'; }
+          if (r.valor === 10) { ressonancias++; tag = 'Êxito · Ressonância'; }
+          if (r.valor === 1) { sombras++; tag = 'Sombra'; cls = 'sombra'; }
+          renderDie(diceTray, r.valor, tag, cls);
+        }
+      });
+    }
+
+    document.getElementById('sum-exitos').textContent = exitos;
+    document.getElementById('sum-sombras').textContent = sombras;
+    document.getElementById('sum-ressonancia').textContent = ressonancias;
+    document.getElementById('sum-artefatos').textContent = artefatosGatilho;
+
+    const resultado = piorDeDois
+      ? classificar(exitos, sombras, 1)
+      : classificar(exitos, sombras, exigido);
+
+    const banner = document.getElementById('result-banner');
+    banner.className = 'result-banner ' + resultado.key;
+    document.getElementById('result-name').textContent = resultado.nome + (piorDeDois ? ' (pool zerado — pior de 2)' : '');
+    document.getElementById('result-desc').textContent = resultado.desc;
+
+    const costArea = document.getElementById('cost-area');
+    costArea.innerHTML = '';
+    if (resultado.custo) {
+      const c = rolarCusto();
+      costArea.innerHTML = `<div class="mini-roll"><b>Custo (d6 · ${c[0]}):</b> ${c[1]}</div>`;
+    }
+
+    const artArea = document.getElementById('artefato-area');
+    artArea.innerHTML = '';
+    if (artefatosGatilho > 0) {
+      const a = rolarArtefato();
+      let nota = artefatosGatilho > 1
+        ? `<div class="mini-roll">Dois ou mais Artefatos na mesma rolagem: role apenas um (2d6) e aumente a persistência dele em um grau.</div>` : '';
+      artArea.innerHTML = nota + `<div class="artefato-card">
+        <div class="a-class">Artefato · ${a.classe}</div>
+        <div class="a-text">${a.texto}</div>
+        <div class="a-dur">Duração: ${a.duracao}</div>
+      </div>`;
+    }
+
+    const resArea = document.getElementById('ressonancia-area');
+    resArea.innerHTML = ressonancias > 0
+      ? `<div class="mini-roll"><b>${ressonancias} Ressonância(s):</b> gaste agora — informação extra, sem Sinal, meia Marcha, remover 1 Desgaste, dar 1 dado a um aliado, ou confirmar um trecho do mapa.</div>` : '';
+
+    resultCard.style.display = '';
+
+    const item = document.createElement('div');
+    item.className = 'roll-log-item';
+    const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    item.innerHTML = `<span><b>${resultado.nome}</b> — pool ${piorDeDois ? '0 (pior de 2)' : pool}${numRuido ? `, ${numRuido} Ruído` : ''} · ${exitos}E/${sombras}S${ressonancias ? `/${ressonancias}R` : ''}${artefatosGatilho ? ' · Artefato!' : ''}</span><span>${hora}</span>`;
+    const emptyNote = document.getElementById('roll-log-empty');
+    if (emptyNote) emptyNote.remove();
+    rollLog.insertBefore(item, rollLog.firstChild);
+  }
+
+  document.getElementById('btn-roll').addEventListener('click', executarRolagem);
+
+  // Permite que a Ficha de Personagem preencha e dispare uma rolagem
+  window.LIMIAR_rollFromSheet = function(atributoVal, periciaVal, assimVal){
+    inAtributo.value = atributoVal;
+    inPericia.value = periciaVal;
+    inMod.value = 0;
+    inAssim.value = assimVal;
+    updatePreview();
+    window.LIMIAR_showView('dados');
+  };
+})();
+
+// ---- Ficha de personagem — Sistema ARTEFATO ----
+(function(){
+  const SKILLS = {
+    Estrutura: ['Atletismo', 'Vigor', 'Força', 'Mecânica', 'Corpo a corpo'],
+    Cadência: ['Furtividade', 'Pontaria', 'Esquiva', 'Precisão', 'Condução'],
+    Leitura: ['Percepção', 'Cartografia', 'Investigação', 'Medicina', 'Sistemas'],
+    Âncora: ['Autocontrole', 'Empatia', 'Comando', 'Memória', 'Protocolo']
+  };
+  const TRACKS = [
+    { id: 'desgaste', nome: 'Desgaste', max: 5 },
+    { id: 'desalinho', nome: 'Desalinho', max: 6 },
+    { id: 'assimilacao', nome: 'Assimilação', max: 6 },
+    { id: 'impressao', nome: 'Impressão', max: 6 }
+  ];
+  const ANCHOR_TYPES = ['Pessoa', 'Objeto', 'Hábito'];
+  const STORAGE_KEY = 'limiar_ficha_v1';
+
+  const skillsContainer = document.getElementById('skills-container');
+  const tracksContainer = document.getElementById('tracks-container');
+  const anchorsContainer = document.getElementById('anchors-container');
+  const protocolsContainer = document.getElementById('protocols-container');
+
+  // Monta perícias
+  Object.keys(SKILLS).forEach(attr => {
+    const group = document.createElement('div');
+    group.className = 'skill-group';
+    group.innerHTML = `<h3>${attr}</h3>`;
+    SKILLS[attr].forEach(nome => {
+      const id = 'sk-' + nome.toLowerCase().replace(/[^a-zà-ú]+/gi, '-');
+      const row = document.createElement('div');
+      row.className = 'skill-row';
+      row.innerHTML = `<span class="s-name">${nome}</span>
+        <input type="number" min="0" max="5" value="0" id="${id}" data-attr="${attr}">
+        <button type="button" class="roll-btn" data-skill="${id}" data-attr-key="${attrKey(attr)}">🎲 Rolar</button>`;
+      group.appendChild(row);
+    });
+    skillsContainer.appendChild(group);
+  });
+  function attrKey(attr){
+    return { Estrutura: 'attr-estrutura', Cadência: 'attr-cadencia', Leitura: 'attr-leitura', Âncora: 'attr-ancora' }[attr];
+  }
+
+  // Monta trilhas
+  TRACKS.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'track-row';
+    let dots = '';
+    for (let i = 1; i <= t.max; i++) dots += `<div class="track-dot" data-track="${t.id}" data-val="${i}"></div>`;
+    row.innerHTML = `<div class="t-name">${t.nome} <span style="color:var(--sub);font-size:11px">(0–${t.max})</span></div><div class="track-dots">${dots}</div>`;
+    tracksContainer.appendChild(row);
+  });
+  tracksContainer.addEventListener('click', e => {
+    const dot = e.target.closest('.track-dot');
+    if (!dot) return;
+    const track = dot.dataset.track, val = parseInt(dot.dataset.val);
+    const dots = [...tracksContainer.querySelectorAll(`[data-track="${track}"]`)];
+    const filled = dots.filter(x => x.classList.contains('filled')).length;
+    const newVal = (filled === val) ? val - 1 : val;
+    dots.forEach(x => x.classList.toggle('filled', parseInt(x.dataset.val) <= newVal));
+    saveSheet();
+  });
+
+  // Monta âncoras
+  ANCHOR_TYPES.forEach(tipo => {
+    const row = document.createElement('div');
+    row.className = 'anchor-row';
+    const id = 'anchor-' + tipo.toLowerCase();
+    row.innerHTML = `<span class="a-type">${tipo}</span>
+      <input type="text" id="${id}" placeholder="${tipo === 'Pessoa' ? 'Nome da pessoa (obrigatório)' : tipo}">
+      <label class="checkbox-lbl"><input type="checkbox" id="${id}-trincada"> Trincada</label>
+      <label class="checkbox-lbl"><input type="checkbox" id="${id}-destruida"> Destruída</label>`;
+    anchorsContainer.appendChild(row);
+  });
+
+  // Monta protocolos
+  for (let i = 1; i <= 3; i++) {
+    const row = document.createElement('div');
+    row.className = 'protocol-row';
+    row.innerHTML = `<input type="text" id="protocol-${i}" placeholder="Ritual específico ${i} — ex.: 'Toco o batente com dois dedos antes de atravessar.'">
+      <label class="checkbox-lbl"><input type="checkbox" id="protocol-${i}-usado"> Usado nesta sessão</label>`;
+    protocolsContainer.appendChild(row);
+  }
+
+  // Rolar a partir de uma Perícia
+  skillsContainer.addEventListener('click', e => {
+    const btn = e.target.closest('.roll-btn');
+    if (!btn) return;
+    const periciaVal = parseInt(document.getElementById(btn.dataset.skill).value) || 0;
+    const atributoVal = parseInt(document.getElementById(btn.dataset.attrKey).value) || 0;
+    const assimEl = tracksContainer.querySelectorAll('[data-track="assimilacao"].filled');
+    const assimVal = assimEl.length;
+    window.LIMIAR_rollFromSheet(atributoVal, periciaVal, assimVal);
+  });
+
+  // Persistência (localStorage)
+  const FIELD_IDS = ['f-nome', 'f-origem', 'f-entrada', 'f-arquetipo', 'f-laco',
+    'attr-estrutura', 'attr-cadencia', 'attr-leitura', 'attr-ancora'];
+
+  function collectSheet(){
+    const data = { fields: {}, skills: {}, tracks: {}, anchors: {}, protocols: {} };
+    FIELD_IDS.forEach(id => { const el = document.getElementById(id); if (el) data.fields[id] = el.value; });
+    document.querySelectorAll('[id^="sk-"]').forEach(el => { data.skills[el.id] = el.value; });
+    TRACKS.forEach(t => {
+      const filled = tracksContainer.querySelectorAll(`[data-track="${t.id}"].filled`).length;
+      data.tracks[t.id] = filled;
+    });
+    ANCHOR_TYPES.forEach(tipo => {
+      const id = 'anchor-' + tipo.toLowerCase();
+      data.anchors[id] = {
+        texto: document.getElementById(id)?.value || '',
+        trincada: document.getElementById(id + '-trincada')?.checked || false,
+        destruida: document.getElementById(id + '-destruida')?.checked || false
+      };
+    });
+    for (let i = 1; i <= 3; i++) {
+      data.protocols['protocol-' + i] = {
+        texto: document.getElementById('protocol-' + i)?.value || '',
+        usado: document.getElementById('protocol-' + i + '-usado')?.checked || false
+      };
+    }
+    return data;
+  }
+
+  function applySheet(data){
+    if (!data) return;
+    Object.keys(data.fields || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = data.fields[id]; });
+    Object.keys(data.skills || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = data.skills[id]; });
+    TRACKS.forEach(t => {
+      const val = (data.tracks || {})[t.id] || 0;
+      tracksContainer.querySelectorAll(`[data-track="${t.id}"]`).forEach(x => {
+        x.classList.toggle('filled', parseInt(x.dataset.val) <= val);
+      });
+    });
+    Object.keys(data.anchors || {}).forEach(id => {
+      const a = data.anchors[id];
+      if (document.getElementById(id)) document.getElementById(id).value = a.texto || '';
+      if (document.getElementById(id + '-trincada')) document.getElementById(id + '-trincada').checked = !!a.trincada;
+      if (document.getElementById(id + '-destruida')) document.getElementById(id + '-destruida').checked = !!a.destruida;
+    });
+    Object.keys(data.protocols || {}).forEach(id => {
+      const p = data.protocols[id];
+      if (document.getElementById(id)) document.getElementById(id).value = p.texto || '';
+      if (document.getElementById(id + '-usado')) document.getElementById(id + '-usado').checked = !!p.usado;
+    });
+  }
+
+  let saveDebounce;
+  function saveSheet(){
+    clearTimeout(saveDebounce);
+    saveDebounce = setTimeout(() => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collectSheet()));
+      const note = document.getElementById('save-note-text');
+      note.textContent = 'salvo às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    }, 400);
+  }
+
+  document.getElementById('view-ficha').addEventListener('input', saveSheet);
+  document.getElementById('view-ficha').addEventListener('change', saveSheet);
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) applySheet(JSON.parse(saved));
+  } catch (e) { /* ficha corrompida — ignora e começa do zero */ }
+
+  document.getElementById('btn-export').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(collectSheet(), null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const nome = (document.getElementById('f-nome').value || 'personagem').trim().replace(/\s+/g, '_');
+    a.href = url;
+    a.download = `LIMIAR_ficha_${nome || 'personagem'}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('btn-import').addEventListener('click', () => document.getElementById('file-import').click());
+  document.getElementById('file-import').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try { applySheet(JSON.parse(reader.result)); saveSheet(); }
+      catch (err) { alert('Arquivo inválido.'); }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    if (!confirm('Limpar toda a ficha atual? Esta ação não pode ser desfeita.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
 })();
 </script>
 </body></html>

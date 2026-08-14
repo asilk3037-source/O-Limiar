@@ -31,6 +31,8 @@ O `index.html` reúne todo o material de desenvolvimento do LIMIAR em 18 partes,
 - Menu retrátil no celular
 - **Busca em texto completo** (caixa "Buscar no livro…" na barra lateral) com navegação entre resultados (Enter / Shift+Enter ou botões ◀ ▶)
 - Downloads do material-fonte original (`.docx` e `.xlsx`) direto pela barra lateral
+- **🎲 Rolar Dados** — rolador do Sistema ARTEFATO completo: monta o pool (Atributo + Perícia + modificador), converte dados em Dados de Ruído conforme o Grau de Assimilação, calcula Êxitos/Sombras/Ressonância, classifica o resultado (Êxito, Êxito Sujo, Custo, Colapso), rola a tabela de Custo (d6) e a tabela de Artefatos (2d6, as 36 completas) automaticamente quando acionadas, e trata a regra de "pool zerado → rola 2 e conta o pior". Mantém histórico da sessão.
+- **📋 Ficha de Personagem** — ficha completa (identidade, 4 atributos, 20 perícias, as quatro trilhas — Desgaste, Desalinho, Assimilação, Impressão —, três Âncoras e três Protocolos), salva sozinha no navegador (`localStorage`), com exportação/importação em `.json` para backup. Cada Perícia tem um botão "🎲 Rolar" que já leva a rolagem pronta pra aba de dados.
 
 ## Estrutura do repositório
 
