@@ -220,6 +220,32 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
   display:flex;align-items:center;gap:6px}
 .save-note .dot{width:7px;height:7px;border-radius:50%;background:#6B9A5A}
 
+/* ---- Galerias (Bestiário / Domínios) ---- */
+.gallery-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.gallery-toolbar input[type=text]{flex:1;min-width:200px;padding:9px 12px;border:1px solid #C9C3B4;
+  border-radius:6px;font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:14px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid #C9C3B4;background:#fff;border-radius:999px;padding:6px 14px;font-size:12.5px;
+  font-family:'Helvetica Neue',Helvetica,sans-serif;cursor:pointer;color:var(--sub)}
+.chip:hover{border-color:var(--amber2);color:var(--amber2)}
+.chip.active{background:var(--amber);border-color:var(--amber);color:#1B1A17;font-weight:700}
+.gallery-count{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:12px;color:var(--sub);margin-bottom:14px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.g-card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:16px 18px;cursor:pointer;
+  text-align:left;transition:border-color .15s,transform .1s}
+.g-card:hover{border-color:var(--amber2);transform:translateY(-2px)}
+.g-card .g-id{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:10.5px;letter-spacing:.06em;
+  color:var(--amber2);margin-bottom:4px}
+.g-card .g-name{font-family:'Helvetica Neue',Helvetica,sans-serif;font-weight:700;font-size:15.5px;
+  margin-bottom:10px;color:#141310}
+.g-card .g-meta{font-size:12px;color:var(--sub);margin-bottom:3px;line-height:1.5}
+.g-card .g-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.g-badge{font-family:'Helvetica Neue',Helvetica,sans-serif;font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;background:#F1EEE6;color:var(--sub);padding:3px 8px;border-radius:4px}
+.g-badge.bloqueio{background:#2B2410;color:var(--amber)}
+@keyframes flashHighlight{0%{background:#F1D9A2}100%{background:transparent}}
+.flash-highlight{animation:flashHighlight 1.8s ease-out}
+
 @media (max-width:900px){
   #nav{transform:translateX(-100%);transition:transform .2s;width:82vw}
   #nav.open{transform:translateX(0)}
@@ -243,6 +269,8 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
     <a href="#" id="nav-book" class="nav-app active"><span class="ic">📖</span>O Livro</a>
     <a href="#" id="nav-dice" class="nav-app"><span class="ic">🎲</span>Rolar Dados</a>
     <a href="#" id="nav-sheet" class="nav-app"><span class="ic">📋</span>Ficha de Personagem</a>
+    <a href="#" id="nav-bestiario-app" class="nav-app"><span class="ic">🧟</span>Bestiário</a>
+    <a href="#" id="nav-dominios-app" class="nav-app"><span class="ic">🗺️</span>Domínios</a>
   </div>
   <div class="search">
     <input type="text" id="site-search" placeholder="Buscar no livro…" autocomplete="off">
@@ -17270,6 +17298,33 @@ the room's true size unreadable.
     <div id="protocols-container"></div>
   </div>
 </div>
+
+<div id="view-bestiario-app" class="app-view" style="display:none">
+  <div class="app-head">
+    <div class="kicker2">PARTE VII</div>
+    <h1>Bestiário — 42 Entidades</h1>
+    <p>Índice navegável das 42 entidades do Limiar, montado a partir do texto do livro. Clique num card para abrir a ficha completa dela na aba O Livro.</p>
+  </div>
+  <div class="gallery-toolbar">
+    <input type="text" id="bestiario-search" placeholder="Buscar por nome, ID ou domínio…">
+  </div>
+  <div class="chip-row" id="bestiario-chips" style="margin-bottom:18px"></div>
+  <div class="gallery-count" id="bestiario-count"></div>
+  <div class="card-grid" id="bestiario-grid"></div>
+</div>
+
+<div id="view-dominios-app" class="app-view" style="display:none">
+  <div class="app-head">
+    <div class="kicker2">PARTE VI</div>
+    <h1>Os 24 Domínios</h1>
+    <p>Índice navegável dos 24 domínios do Limiar, montado a partir do texto do livro. Clique num card para abrir o domínio completo na aba O Livro.</p>
+  </div>
+  <div class="gallery-toolbar">
+    <input type="text" id="dominios-search" placeholder="Buscar por nome, ID ou conceito assimilado…">
+  </div>
+  <div class="gallery-count" id="dominios-count"></div>
+  <div class="card-grid" id="dominios-grid"></div>
+</div>
 </main>
 
 <script>
@@ -17380,14 +17435,18 @@ links.forEach(l => l.addEventListener('click', () => {
   btnPrev.addEventListener('click', () => goTo(idx - 1));
 })();
 
-// ---- Troca de modo: Livro / Rolar Dados / Ficha de Personagem ----
+// ---- Troca de modo: Livro / Rolar Dados / Ficha / Bestiário / Domínios ----
 (function(){
   const views = { livro: document.getElementById('view-livro'),
                   dados: document.getElementById('view-dados'),
-                  ficha: document.getElementById('view-ficha') };
+                  ficha: document.getElementById('view-ficha'),
+                  bestiarioApp: document.getElementById('view-bestiario-app'),
+                  dominiosApp: document.getElementById('view-dominios-app') };
   const navBtns = { livro: document.getElementById('nav-book'),
                      dados: document.getElementById('nav-dice'),
-                     ficha: document.getElementById('nav-sheet') };
+                     ficha: document.getElementById('nav-sheet'),
+                     bestiarioApp: document.getElementById('nav-bestiario-app'),
+                     dominiosApp: document.getElementById('nav-dominios-app') };
   function showView(name){
     Object.keys(views).forEach(k => { views[k].style.display = (k === name) ? '' : 'none'; });
     Object.keys(navBtns).forEach(k => navBtns[k].classList.toggle('active', k === name));
@@ -17395,12 +17454,23 @@ links.forEach(l => l.addEventListener('click', () => {
     if (window.innerWidth <= 900) document.getElementById('nav').classList.remove('open');
   }
   window.LIMIAR_showView = showView;
-  navBtns.livro.addEventListener('click', e => { e.preventDefault(); showView('livro'); });
-  navBtns.dados.addEventListener('click', e => { e.preventDefault(); showView('dados'); });
-  navBtns.ficha.addEventListener('click', e => { e.preventDefault(); showView('ficha'); });
+  Object.keys(navBtns).forEach(k => navBtns[k].addEventListener('click', e => { e.preventDefault(); showView(k); }));
   document.querySelectorAll('#nav a.nav-part').forEach(l => {
     l.addEventListener('click', () => showView('livro'));
   });
+
+  // Abre o Livro numa seção específica (usado pelas galerias) e destaca o alvo
+  window.LIMIAR_openInBook = function(anchorId){
+    showView('livro');
+    requestAnimationFrame(() => {
+      const el = document.getElementById(anchorId);
+      if (!el) return;
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      el.classList.remove('flash-highlight');
+      void el.offsetWidth;
+      el.classList.add('flash-highlight');
+    });
+  };
 })();
 
 // ---- Rolador de dados — Sistema ARTEFATO ----
@@ -17819,6 +17889,148 @@ links.forEach(l => l.addEventListener('click', () => {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   });
+})();
+
+// ---- Galeria: Bestiário — lida direto do texto da Parte VII ----
+(function(){
+  const BLOQUEIOS = ['Rota', 'Recurso', 'Informação', 'Descanso', 'Identidade'];
+  const section = document.querySelector('#bestiario');
+  if (!section) return;
+  const headings = [...section.querySelectorAll('h1,h2,h3')].filter(h => /ENT-0\d\d/.test(h.textContent));
+
+  const items = headings.map(h => {
+    const id = h.textContent.match(/ENT-0\d\d/)[0];
+    const anchorId = 'ent-' + id.split('-')[1];
+    h.id = anchorId;
+    let name = h.textContent.split('·').slice(1).join('·').trim();
+    if (!name) name = h.textContent.replace(id, '').trim();
+
+    let statText = '';
+    let sib = h.nextElementSibling, hops = 0;
+    while (sib && hops < 4) {
+      if (sib.tagName === 'PRE' || (sib.tagName === 'P' && sib.querySelector('code'))) { statText = sib.textContent; break; }
+      if (/^H[1-3]$/.test(sib.tagName)) break;
+      sib = sib.nextElementSibling; hops++;
+    }
+    const bloqueio = BLOQUEIOS.find(b => statText.includes(b)) || '';
+    const dominios = [...new Set([...statText.matchAll(/DOM-0\d\d/g)].map(x => x[0]))];
+    const ameaca = (statText.match(/Amea[çc]a\s*:?\s*([\d—-]+)/i) || [])[1] || '';
+    const persistencia = (statText.match(/Persist[êe]ncia\s*:?\s*([\d—-]+)/i) || [])[1] || '';
+    return { id, anchorId, name, bloqueio, dominios, ameaca, persistencia };
+  });
+
+  const grid = document.getElementById('bestiario-grid');
+  const countEl = document.getElementById('bestiario-count');
+  const searchEl = document.getElementById('bestiario-search');
+  const chipsEl = document.getElementById('bestiario-chips');
+  let activeChip = 'Todos';
+
+  ['Todos', ...BLOQUEIOS].forEach(label => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip' + (label === 'Todos' ? ' active' : '');
+    chip.textContent = label;
+    chip.addEventListener('click', () => {
+      activeChip = label;
+      chipsEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === chip));
+      applyFilter();
+    });
+    chipsEl.appendChild(chip);
+  });
+
+  function applyFilter(){
+    const q = searchEl.value.trim().toLowerCase();
+    const list = items.filter(it => {
+      const matchesChip = activeChip === 'Todos' || it.bloqueio === activeChip;
+      const hay = `${it.id} ${it.name} ${it.dominios.join(' ')}`.toLowerCase();
+      const matchesSearch = !q || hay.includes(q);
+      return matchesChip && matchesSearch;
+    });
+    grid.innerHTML = list.map(it => `
+      <button type="button" class="g-card" data-anchor="${it.anchorId}">
+        <div class="g-id">${it.id}</div>
+        <div class="g-name">${it.name}</div>
+        <div class="g-meta">${it.dominios.length ? 'Domínio: ' + it.dominios.join(', ') : 'Nômade — sem domínio fixo'}</div>
+        <div class="g-badges">
+          ${it.bloqueio ? `<span class="g-badge bloqueio">${it.bloqueio}</span>` : ''}
+          ${it.ameaca ? `<span class="g-badge">Ameaça ${it.ameaca}</span>` : ''}
+          ${it.persistencia ? `<span class="g-badge">Persist. ${it.persistencia}</span>` : ''}
+        </div>
+      </button>`).join('') || '<p style="color:var(--sub)">Nenhuma entidade encontrada.</p>';
+    countEl.textContent = `${list.length} de ${items.length} entidades`;
+  }
+
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.g-card');
+    if (card) window.LIMIAR_openInBook(card.dataset.anchor);
+  });
+  searchEl.addEventListener('input', applyFilter);
+  applyFilter();
+})();
+
+// ---- Galeria: Domínios — lida direto do texto da Parte VI ----
+(function(){
+  const section = document.querySelector('#dominios');
+  if (!section) return;
+
+  const matriz = {};
+  section.querySelectorAll('table').forEach(t => {
+    const headText = t.querySelector('thead')?.textContent || '';
+    if (headText.includes('Conceito assimilado') && headText.includes('Movimento do Limiar')) {
+      t.querySelectorAll('tbody tr').forEach(tr => {
+        const tds = tr.querySelectorAll('td');
+        if (tds.length < 5) return;
+        const num = tds[0].textContent.trim().padStart(3, '0');
+        matriz['DOM-' + num] = {
+          conceito: tds[2].textContent.trim(),
+          movimento: tds[4].textContent.trim()
+        };
+      });
+    }
+  });
+
+  const headings = [...section.querySelectorAll('h1,h2,h3')].filter(h => /DOM-0\d\d/.test(h.textContent));
+  const seen = new Set();
+  const items = [];
+  headings.forEach(h => {
+    const id = h.textContent.match(/DOM-0\d\d/)[0];
+    if (seen.has(id)) return; // mantém só a primeira ocorrência (o cabeçalho real do domínio)
+    seen.add(id);
+    const anchorId = 'dom-' + id.split('-')[1];
+    h.id = anchorId;
+    let name = h.textContent.replace(/^PARTE\s*\d+\s*[—-]\s*/i, '').split('·').slice(1).join('·').trim();
+    if (!name) name = h.textContent.replace(id, '').trim();
+    const info = matriz[id] || {};
+    items.push({ id, anchorId, name, conceito: info.conceito || '', movimento: info.movimento || '' });
+  });
+  items.sort((a, b) => a.id.localeCompare(b.id));
+
+  const grid = document.getElementById('dominios-grid');
+  const countEl = document.getElementById('dominios-count');
+  const searchEl = document.getElementById('dominios-search');
+
+  function applyFilter(){
+    const q = searchEl.value.trim().toLowerCase();
+    const list = items.filter(it => {
+      const hay = `${it.id} ${it.name} ${it.conceito}`.toLowerCase();
+      return !q || hay.includes(q);
+    });
+    grid.innerHTML = list.map(it => `
+      <button type="button" class="g-card" data-anchor="${it.anchorId}">
+        <div class="g-id">${it.id}</div>
+        <div class="g-name">${it.name}</div>
+        ${it.conceito ? `<div class="g-meta">Conceito assimilado: ${it.conceito}</div>` : ''}
+        ${it.movimento ? `<div class="g-badges"><span class="g-badge bloqueio">${it.movimento}</span></div>` : ''}
+      </button>`).join('') || '<p style="color:var(--sub)">Nenhum domínio encontrado.</p>';
+    countEl.textContent = `${list.length} de ${items.length} domínios`;
+  }
+
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.g-card');
+    if (card) window.LIMIAR_openInBook(card.dataset.anchor);
+  });
+  searchEl.addEventListener('input', applyFilter);
+  applyFilter();
 })();
 </script>
 </body></html>
