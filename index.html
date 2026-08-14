@@ -57,6 +57,10 @@ mark.hit.current{background:var(--amber);color:#1B1A17;box-shadow:0 0 0 2px var(
     linear-gradient(160deg,#1B1A17 0%,#242119 100%)}
 .cover::after{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:140%;
   background:radial-gradient(ellipse at center, rgba(216,154,60,.06) 0%, transparent 70%);pointer-events:none}
+.cover-art{position:absolute;top:0;right:0;height:100%;width:56%;z-index:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 22%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 22%)}
+.cover .kicker,.cover h1,.cover .rule,.cover .sub,.cover .meta,.cover .scroll{position:relative;z-index:1}
 .cover .kicker{font-family:'Helvetica Neue',Helvetica,sans-serif;letter-spacing:.35em;
   font-size:12px;color:var(--amber);margin-bottom:18px}
 .cover h1{font-family:'Helvetica Neue',Helvetica,sans-serif;font-weight:300;
@@ -368,6 +372,27 @@ footer{max-width:900px;margin:0 auto;padding:50px 40px 90px 40px;font-family:'He
 <main id="main">
 <div id="view-livro">
 <section class="cover">
+  <svg class="cover-art" viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="vpGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#D89A3C" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#D89A3C" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="390" cy="350" r="60" fill="url(#vpGlow)"/>
+    <g fill="none" stroke="#D89A3C" stroke-width="1.2">
+      <line x1="20" y1="40" x2="390" y2="350" opacity=".28"/>
+      <line x1="480" y1="40" x2="390" y2="350" opacity=".28"/>
+      <line x1="480" y1="660" x2="390" y2="350" opacity=".28"/>
+      <line x1="20" y1="660" x2="390" y2="350" opacity=".28"/>
+      <polygon points="101.4,108.2 460.2,108.2 460.2,591.8 101.4,591.8" opacity=".55"/>
+      <polygon points="168.0,164.0 444.0,164.0 444.0,536.0 168.0,536.0" opacity=".42"/>
+      <polygon points="227.2,213.6 429.6,213.6 429.6,486.4 227.2,486.4" opacity=".32"/>
+      <polygon points="279.0,257.0 417.0,257.0 417.0,443.0 279.0,443.0" opacity=".24"/>
+      <polygon points="323.4,294.2 406.2,294.2 406.2,405.8 323.4,405.8" opacity=".18"/>
+      <polygon points="356.7,322.1 398.1,322.1 398.1,377.9 356.7,377.9" opacity=".14"/>
+    </g>
+  </svg>
   <div class="kicker">H O R R O R &nbsp; D E &nbsp; E S T R A N H A M E N T O</div>
   <h1>LIMIAR</h1>
   <div class="rule"></div>
